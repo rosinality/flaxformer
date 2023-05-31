@@ -99,6 +99,7 @@ moe_architecture.SparseDecoder:
 
 # Decoder layers
 moe_architecture.SparseDecoderLayer:
+  encoder_decoder_attention = None
   dropout_factory = %DROPOUT_FACTORY
   layer_norm_factory = @layer_norm.T5LayerNorm
   activation_partitioning_dims = %ACTIVATION_PARTITIONING_DIMS
@@ -108,6 +109,7 @@ moe_architecture.SparseDecoderLayer:
   scanned = False
 
 t5_architecture.DecoderLayer:
+  encoder_decoder_attention = None
   dropout_factory = %DROPOUT_FACTORY
   layer_norm_factory = @layer_norm.T5LayerNorm
   activation_partitioning_dims = %ACTIVATION_PARTITIONING_DIMS
