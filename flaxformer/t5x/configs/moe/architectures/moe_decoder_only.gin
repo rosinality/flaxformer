@@ -82,6 +82,7 @@ dropout_factory/linen.Dropout:
 ARCHITECTURE = @t5_architecture.DecoderOnly()
 t5_architecture.DecoderOnly:
   decoder_factory = @moe_architecture.SparseDecoder
+  shared_token_embedder_factory = @embedding.Embed
   dtype = %ACTIVATION_DTYPE
 
 # Decoder Config
