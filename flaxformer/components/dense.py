@@ -167,12 +167,28 @@ class DenseGeneral(nn.Module):
       out = out + bias
     return out
 
+  
+# class SwiGLU(nn.Module):
+@partial(jax.jit, static_argnames=("axis",))
+def SwiGLU(x: Array, axis: int = -1) -> Array:
+  """Gated linear unit activation function.
+
+  Args:
+    x : input array
+    axis: the axis along which the split should be computed (default: -1)
+  """
+  size = x.shape[axis]
+  assert size % 2 == 0, "axis size must be divisible by 2"
+  x1, x2 = jnp.split(x, 2, axis)
+  return x1 * nn.swish(x2)
 
 def _convert_to_activation_function(
     fn_or_string: Union[str, Callable]) -> Callable:
   """Convert a string to an activation function."""
   if fn_or_string == 'linear':
     return lambda x: x
+  elif fn_or_string == 'swiglu':
+    return SwiGLU
   elif isinstance(fn_or_string, str):
     return getattr(nn, fn_or_string)
   elif callable(fn_or_string):
@@ -334,8 +350,12 @@ class MlpBlock(nn.Module):
       else:
         for idx, act_fn in enumerate(self.activations):
           dense_name = 'wi' if len(self.activations) == 1 else f'wi_{idx}'
-          x = dense(self.intermediate_dim, dense_name, inputs,
-                    (self.input_axis_name, self.intermediate_axis_name))
+          if act_fn=='swiglu':
+            x = dense(int(self.intermediate_dim * 2), dense_name, inputs,
+                      (self.input_axis_name, self.intermediate_axis_name))
+          else:
+            x = dense(self.intermediate_dim, dense_name, inputs,
+                      (self.input_axis_name, self.intermediate_axis_name))
           x = _convert_to_activation_function(act_fn)(x)
           if idx == 0 and self.intermediate_conv is not None:
             x = self.intermediate_conv(  # pylint: disable=not-callable
