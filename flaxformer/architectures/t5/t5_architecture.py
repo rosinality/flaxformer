@@ -1503,10 +1503,14 @@ class DecoderOnly(nn.Module, param_remapping.ParameterRemappable):
   # Configures behavior when the model is called. Many of these might eventually
   # be better as call parameters.
   dtype: DType = jnp.float32
-
+  shared_token_embedder_factory: Optional[Callable[[], embedding.Embed]] = None
+  
   def setup(self):
-    self.decoder = self.decoder_factory(shared_token_embedder=None)
-
+    self.token_embedder = (
+        self.shared_token_embedder_factory()
+        if self.shared_token_embedder_factory else None)
+    self.decoder = self.decoder_factory(shared_token_embedder=self.token_embedder)
+    
   def __call__(
       self,
       decoder_input_tokens: Array,
