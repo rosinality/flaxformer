@@ -40,7 +40,6 @@ ROUTER_Z_LOSS_FACTOR = 0.0
 SCALE = 0.1  # Small weight initialization for stability
 
 # Tokens choose routing typically sees a boost from BPR.
-sparse_encoder/routing.TokensChooseMaskedRouter.batch_prioritized_routing = True
 # BPR breaks autoregressive behavior so we don't use it in the decoder.
 
 # Vocabulary (shared by encoder and decoder)
