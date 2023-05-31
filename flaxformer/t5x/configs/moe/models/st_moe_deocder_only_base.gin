@@ -7,7 +7,7 @@
 from flaxformer.architectures.moe import moe_architecture
 from flaxformer.components import dense
 
-include 'flaxformer/flaxformer/t5x/configs/moe/models/tokens_choose_base.gin'
+include 'flaxformer/flaxformer/t5x/configs/moe/models/tokens_choose_decoder_only_base.gin'
 
 # MoE overrides
 NUM_EXPERTS = 16
