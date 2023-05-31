@@ -144,8 +144,8 @@ embedding.Embed:
 token_embedder_init/linen.initializers.normal.stddev = 1.0
 
 # Attention (encoder, decoder, self-attention)
+# attention_fn = @memory_efficient_attention.dot_product_attention_multiquery
 dense_attention.MultiQueryDotProductAttention:
-  attention_fn = @memory_efficient_attention.dot_product_attention_multiquery
   num_heads = %NUM_HEADS
   dtype = %ACTIVATION_DTYPE
   head_dim = %HEAD_DIM
