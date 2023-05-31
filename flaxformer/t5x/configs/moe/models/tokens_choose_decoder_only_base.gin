@@ -67,8 +67,7 @@ LOSS_NORMALIZING_FACTOR = 'NUM_REAL_TARGET_TOKENS'
 MODEL = @models.MoeDecoderOnlyModel()
 models.MoeDecoderOnlyModel:
   module = %ARCHITECTURE  # provided by moe.gin
-  input_vocabulary = %VOCABULARY
-  output_vocabulary = %VOCABULARY
+  vocabulary = %VOCABULARY
   optimizer_def = %OPTIMIZER
   z_loss = %Z_LOSS
   label_smoothing = %LABEL_SMOOTHING
