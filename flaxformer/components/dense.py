@@ -29,6 +29,7 @@ from flax import linen as nn
 from flax.core import frozen_dict
 from flax.linen import partitioning
 from flax.linen.linear import default_kernel_init
+import jax
 from jax import lax
 import jax.numpy as jnp
 import numpy as np
