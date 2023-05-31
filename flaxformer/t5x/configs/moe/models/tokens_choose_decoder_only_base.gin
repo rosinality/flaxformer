@@ -14,7 +14,7 @@ from t5x.contrib.moe import models
 
 ARCHITECTURE = %gin.REQUIRED
 
-include 'flaxformer/flaxformer/t5x/configs/moe/architectures/moe.gin'
+include 'flaxformer/flaxformer/t5x/configs/moe/architectures/moe_decoder_only.gin'
 
 # Architecture overrides
 NUM_DECODER_LAYERS = 12
