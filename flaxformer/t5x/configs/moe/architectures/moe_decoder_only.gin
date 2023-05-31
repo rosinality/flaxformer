@@ -177,7 +177,7 @@ attention_kernel_init/linen.initializers.variance_scaling:
 dense.MlpBlock:
   use_bias = False
   intermediate_dim = %MLP_DIM
-  activations = ('gelu', 'linear')
+  activations = ('swiglu', 'linear')
   kernel_init = @mlp_kernel_init/linen.initializers.variance_scaling()
   bias_init = %BIAS_INIT
   intermediate_dropout_rate = %DROPOUT_RATE
@@ -233,7 +233,7 @@ router_init/linen.initializers.normal:
 expert/dense.MlpBlock:
   use_bias = False
   intermediate_dim = %EXPERT_MLP_DIM
-  activations = ('gelu', 'linear')
+  activations = ('swiglu', 'linear')
   kernel_init = @expert_kernel_init/linen.initializers.variance_scaling()
   bias_init =  %BIAS_INIT
   intermediate_dropout_rate = %EXPERT_DROPOUT_RATE
