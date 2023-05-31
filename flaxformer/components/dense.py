@@ -17,6 +17,7 @@
 # pylint: disable=attribute-defined-outside-init,g-bare-generic
 
 import functools
+from functools import partial
 import operator
 from typing import Any, Callable, Iterable, Mapping, Optional, Sequence, Tuple, Union
 
