@@ -103,7 +103,7 @@ moe_architecture.SparseDecoderLayer:
   dropout_factory = %DROPOUT_FACTORY
   layer_norm_factory = @layer_norm.T5LayerNorm
   activation_partitioning_dims = %ACTIVATION_PARTITIONING_DIMS
-  self_attention = @dense_attention.MultiQueryDotProductAttention()
+  self_attention = @dense_attention.MultiHeadDotProductAttention()
   mlp = @sparse_decoder/moe_layers.MoeLayer()
   # Individual layers in MoE models are never scanned; only blocks.
   scanned = False
@@ -113,7 +113,7 @@ t5_architecture.DecoderLayer:
   dropout_factory = %DROPOUT_FACTORY
   layer_norm_factory = @layer_norm.T5LayerNorm
   activation_partitioning_dims = %ACTIVATION_PARTITIONING_DIMS
-  self_attention = @dense_attention.MultiQueryDotProductAttention()
+  self_attention = @dense_attention.MultiHeadDotProductAttention()
   mlp = @dense.MlpBlock()
   # Individual layers in MoE models are never scanned; only blocks.
   scanned = False
