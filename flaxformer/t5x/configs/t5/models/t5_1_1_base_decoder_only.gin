@@ -41,8 +41,7 @@ adafactor.Adafactor:
 MODEL = @models.DecoderOnlyModel()
 models.DecoderOnlyModel:
   module = %ARCHITECTURE  # provided by t5_flaxformer
-  input_vocabulary = %VOCABULARY
-  output_vocabulary = %VOCABULARY
+  vocabulary = %VOCABULARY
   optimizer_def = %OPTIMIZER
   z_loss = %Z_LOSS
   label_smoothing = %LABEL_SMOOTHING
