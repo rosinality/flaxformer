@@ -46,17 +46,6 @@ t5_architecture.DecoderOnly:
   shared_token_embedder_factory = @embedding.Embed
   dtype = %ACTIVATION_DTYPE
 
-# Encoder
-t5_architecture.Encoder:
-  num_layers = %NUM_ENCODER_LAYERS
-  layer_factory = @t5_architecture.EncoderLayer
-  input_dropout_factory = %DROPOUT_FACTORY
-  output_dropout_factory = %DROPOUT_FACTORY
-  layer_norm_factory = @layer_norm.T5LayerNorm
-  position_embedder_factory = None
-  shared_relative_position_bias_factory = @relative_position_biases.RelativePositionBiases
-  dtype = %ACTIVATION_DTYPE
-
 # Decoder
 t5_architecture.Decoder:
   num_layers = %NUM_DECODER_LAYERS
