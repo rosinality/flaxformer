@@ -10,7 +10,7 @@ from flaxformer.components import dense
 include 'flaxformer/flaxformer/t5x/configs/moe/models/tokens_choose_decoder_only_large.gin'
 
 # MoE overrides
-NUM_EXPERTS = 32
+NUM_EXPERTS = 8
 # Every fourth layer is an MoE sublayer.
 NUM_DECODER_SPARSE_LAYERS = 4
 ROUTER_Z_LOSS_FACTOR = 0.0001  # ST-MoE uses router z-loss.
